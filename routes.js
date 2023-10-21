@@ -22,13 +22,24 @@ router.get('/browse-treasure', async (req, res) => {
 })
 
 router.post('/find-treasure', inputValidator, async (req, res) => {
-  const { lat, lon, distance } = req.body
+  const { lat, lon, distance, price_value } = req.body
+
   // validate input
   const errors = validationResult(req);
   if (errors.isEmpty()) {
     try {
+      let isPriceValueAvailable = false;
+      let filteredRecord;
       const treasureRecord = await Treasures.findAll({ include: 'money_values' });
-      const treasuresWithinDistance = treasureRecord.filter(val => {
+      
+      if (price_value) {
+        isPriceValueAvailable = true;
+        filteredRecord = treasureRecord.filter((el) => el.money_values.find((obj) => obj.amount >= price_value))
+      } else {
+        filteredRecord = treasureRecord;
+      }
+
+      const treasuresWithinDistance = filteredRecord.filter(val => {
         const treasureLat = val.latitude;
         const treasuleLon = val.longitude;
         const treasureCoordinates = { latitude: treasureLat, longitude: treasuleLon }
@@ -60,7 +71,7 @@ router.post('/find-treasure', inputValidator, async (req, res) => {
         };
       });
 
-      res.json(treasuresWithLowestAmount);
+      (isPriceValueAvailable) ? res.json(treasuresWithLowestAmount) : res.json(treasuresWithinDistance);
     } catch (err) {
       console.log(err)
       res.status(500).json({ message: 'Internal Server Error' })
