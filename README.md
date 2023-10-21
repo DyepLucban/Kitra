@@ -13,6 +13,11 @@ https://github.com/DyepLucban/Kitra.git
 npm install
 ```
 
+3. Start the server
+```bash
+npm run start
+```
+
 ### Migrations
 
 Run migrations.
