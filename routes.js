@@ -10,7 +10,7 @@ router.get('/status', (req, res) => {
   res.send('status ok')
 })
 
-// Treasure route
+// Browse treasure
 router.get('/browse-treasure', async (req, res) => {
   try {
     const treasureRecord = await Treasures.findAll({ include: 'money_values' });
@@ -21,6 +21,7 @@ router.get('/browse-treasure', async (req, res) => {
   }
 })
 
+// Search treasure
 router.post('/find-treasure', inputValidator, async (req, res) => {
   const { lat, lon, distance, price_value } = req.body
 
