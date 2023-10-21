@@ -29,3 +29,28 @@ Run seeders.
 ```bash
 npx sequelize db:seed:all
 ```
+
+
+### Endpoints
+
+Browse all the treasures
+```bash
+
+1. GET '/browse-treasure'
+
+```
+
+Find a treasure within specified longitude, latitude and distance
+```bash
+2. POST '/find-treasure'
+
+Pass an object
+
+example: // price_value is an optional value
+  {
+    "lat": 14.5872615919051,
+    "lon": 120.979504794655,
+    "distance": 10
+    "price_value": 10
+  }  
+```
