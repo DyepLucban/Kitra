@@ -36,13 +36,13 @@ npx sequelize db:seed:all
 Browse all the treasures
 ```bash
 
-1. GET '/browse-treasure'
+1. GET '/v1/browse-treasure'
 
 ```
 
 Find a treasure within specified longitude, latitude and distance
 ```bash
-2. POST '/find-treasure'
+2. POST '/v1/find-treasure'
 
 Pass an object
 
@@ -51,7 +51,7 @@ example:
     // note: Use the raw body on postman
     "lat": 14.5872615919051,
     "lon": 120.979504794655,
-    "distance": 10
+    "distance": 10,
     "price_value": 10 // price_value is an optional value
   }  
 ```
