@@ -46,11 +46,12 @@ Find a treasure within specified longitude, latitude and distance
 
 Pass an object
 
-example: // price_value is an optional value
+example:
   {
+    // note: Use the raw body on postman
     "lat": 14.5872615919051,
     "lon": 120.979504794655,
     "distance": 10
-    "price_value": 10
+    "price_value": 10 // price_value is an optional value
   }  
 ```
